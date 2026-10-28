@@ -71,7 +71,7 @@ urlpatterns = [
 
     # Links for the Client to work with the Server
     path(r'clientVersionRef/', views.client_version_ref),
-    path(r'clientMatchRunnerVersionRef/', views.client_match_runner_version_ref),
+    #path(r'clientMatchRunnerVersionRef/', views.client_match_runner_version_ref),
     path(r'clientGetBuildInfo/', views.client_get_build_info),
     path(r'clientWorkerInfo/', views.client_worker_info),
     path(r'clientGetWorkload/', views.client_get_workload),

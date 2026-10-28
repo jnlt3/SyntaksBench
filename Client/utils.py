@@ -177,20 +177,7 @@ def check_for_engine_binary(out_path):
         return '%s.exe' % (out_path)
 
 def makefile_command(net_path, make_path, out_path, compiler):
-
-    # Build with -j, and EXE= to contol the output location
-    command = ['make', '-j', 'EXE=%s' % (out_path)]
-
-    # Build with CC/CXX= when using a custom compiler
-    if compiler and not any(rc in compiler for rc in ('rustc','cargo')):
-        comp_flag = ['CC', 'CXX']['++' in compiler]
-        command  += ['%s=%s' % (comp_flag, compiler)]
-
-    # Build with EVALFILE= to embed NNUE files
-    if net_path:
-        command += ['EVALFILE=%s' % (os.path.abspath(net_path).replace('\\', '/'))]
-
-    return command
+    return f"cargo rustc --release --bin syntaks -- -C target-cpu=native --emit link={out_path}".split()
 
 
 def download_opening_book(book_sha, book_source, book_name):
